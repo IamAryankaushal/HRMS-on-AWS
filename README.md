@@ -1,69 +1,76 @@
-HRMS ON AWS
-# HRMS on AWS : Human Resource Management System
+#  HRMS on AWS : Human Resource Management System
 
-This project is a cloud-based **Human Resource Management System (HRMS)** built using AWS Free Tier services. It aims to streamline HR tasks such as employee record management, role assignment, and attendance tracking using scalable and cost-effective AWS solutions.
+This project is a cloud-based **Human Resource Management System (HRMS)** built entirely using AWS Free Tier services. It enables secure employee management with authentication, record keeping, and REST API access—all deployed on a serverless architecture.
 
 ---
 
-# Project Overview
+## Project Overview
 
-- A serverless HRMS system designed to operate entirely within the **AWS Free Tier**
-- Demonstrates how to architect, develop, and deploy cloud-native business applications
-- Focuses on integrating key AWS services like:
-  - **Amazon S3** (data storage and static website hosting)
+- A serverless HRMS system designed to run cost-effectively within AWS Free Tier
+- Uses **Amazon Cognito** for secure user authentication
+- Built using AWS services like:
+  - **Amazon S3** (static hosting)
   - **AWS Lambda** (serverless compute)
   - **Amazon DynamoDB** (NoSQL database)
-  - **Amazon API Gateway** (REST API endpoints)
-  - **IAM Roles & Policies** (secure access management)
+  - **Amazon API Gateway** (REST APIs)
+  - **Amazon Cognito** (authentication and user pools)
+  - **IAM** (access control)
 
 ---
 
-# Features
+## Features
 
-- Add, update, and remove employee records
-- Role-based access control (Admin vs Employee)
-- Track attendance and leave applications
-- Simple frontend connected via REST API
-- Fully deployed without using paid AWS services
+- Secure login and registration via Amazon Cognito
+- Role-based user access (Admin and Employee)
+- CRUD operations for employee records
+- Attendance and leave tracking
+- Responsive frontend with integrated authentication flow
+- No paid services—fully AWS Free Tier compatible
 
 ---
 
-# Tech Stack
+## Authentication
 
-- **Frontend:** HTML, CSS, JavaScript (to be hosted on S3)
-- **Backend:** AWS Lambda (Python)
+- **Amazon Cognito** is used for managing user sign-up, sign-in, and token-based session management.
+- A custom `auth.js` script is included in the frontend to integrate with Cognito’s hosted UI and SDK.
+- Users are assigned roles post-login to control access (Admin or Employee).
+
+---
+
+## Tech Stack
+
+- **Frontend:** HTML, CSS, JavaScript
+- **Authentication:** Amazon Cognito (`auth.js`)
+- **Backend:** AWS Lambda (Node.js/Python)
 - **Database:** Amazon DynamoDB
-- **API Management:** Amazon API Gateway
-- **Authentication:** AWS IAM (basic role segregation)
-- **Deployment:** AWS Console and CLI
+- **APIs:** Amazon API Gateway
+- **Hosting:** Amazon S3 (Static website)
 
 ---
 
+## Security
 
-## Security Considerations
-
-- IAM policies are scoped using the principle of least privilege
-- API endpoints are secured via key-based access (or Cognito, if added)
-- No sensitive data is stored or shared publicly
+- Cognito handles authentication securely using industry best practices.
+- IAM roles ensure minimal privileges for Lambda/API access.
+- API Gateway endpoints are protected using Cognito token validation.
 
 ---
 
 ## What I Learned
 
-- Practical use of AWS services in building a production-style system
-- API management and authentication via IAM
-- Serverless backend deployment and scaling concepts
-- Structuring cloud-native applications using best practices
+- End-to-end serverless app development with AWS
+- Secure authentication using Amazon Cognito
+- Role-based access control for multi-user systems
+- Hands-on experience with AWS Lambda, API Gateway, and DynamoDB
+- Best practices for building cloud-native applications
+- Static website hosting using S3 
 
 ---
 
 ## How to Deploy
 
-1. Clone this repo
-2. Set up S3 static hosting for the frontend
-3. Deploy Lambda functions and link with API Gateway
-4. Configure DynamoDB tables
-5. Test endpoints and connect frontend
-
-
-
+1. Clone the repo and set up S3 for frontend hosting
+2. Deploy Lambda functions and APIs
+3. Create and configure Cognito user pool and app client
+4. Connect `auth.js` to your Cognito app
+5. Launch the frontend and test the flow
